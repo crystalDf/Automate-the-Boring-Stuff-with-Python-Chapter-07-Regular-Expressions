@@ -32,21 +32,54 @@ print(match_object.group(0))
 print(match_object.group())
 print(match_object.groups())
 
-"""multiple-assignment trick"""
+"""
+multiple-assignment trick
+"""
 areaCode, mainNumber = match_object.groups()
 print(areaCode)
 print(mainNumber)
 
-"""The \( and \) escape characters in the raw string passed to re.compile()
-will match actual parenthesis characters."""
+"""
+The \( and \) escape characters in the raw string passed to re.compile()
+will match actual parenthesis characters.
+"""
 phone_num_regex = re.compile(r'(\(\d{3}\)) (\d{3}-\d{4})')
 match_object = phone_num_regex.search('My phone number is (415) 555-4242.')
 print(match_object.group(1))
 print(match_object.group(2))
 
+"""
+You can think of the ? as saying,
+“Match zero or one of the group preceding this question mark.”
+"""
 phone_num_regex = re.compile(r'(\d{3}-)?\d{3}-\d{4}')
 match_object = phone_num_regex.search('My number is 415-555-4242')
 print(match_object.group())
 
 match_object = phone_num_regex.search('My number is 555-4242')
 print(match_object.group())
+
+"""
+search() returns a Match object only on the first instance of matching text
+"""
+phone_num_regex = re.compile(r'\d{3}-\d{3}-\d{4}')
+match_object = phone_num_regex.search('Cell: 415-555-9999 Work: 212-555-0000')
+print(match_object.group())
+
+"""
+findall() will not return a Match object
+but a list of strings —
+as long as there are no groups in the regular expression
+"""
+phone_num_regex = re.compile(r'\d{3}-\d{3}-\d{4}') # has no groups
+match_object = phone_num_regex.findall('Cell: 415-555-9999 Work: 212-555-0000')
+print(match_object)
+
+
+"""
+the regular expression being compiled now has groups in parentheses
+"""
+phone_num_regex = re.compile(r'(\d{3})-(\d{3})-(\d{4})') # has groups
+
+match_object = phone_num_regex.findall('Cell: 415-555-9999 Work: 212-555-0000')
+print(match_object)

@@ -39,9 +39,40 @@ The (wo)? part of the regular expression means that the pattern wo
 is an optional group. The regex will match text that has zero instances
 or one instance of wo in it.
 """
-
+"""
+You can think of the ? as saying,
+“Match zero or one of the group preceding this question mark.”
+"""
 bat_regex = re.compile(r'Bat(wo)?man')
 match_object = bat_regex.search('The Adventures of Batman')
 print(match_object.group())
 match_object = bat_regex.search('The Adventures of Batwoman')
 print(match_object.group())
+
+"""
+The * (called the star or asterisk) means “match zero or more”
+"""
+bat_regex = re.compile(r'Bat(wo)*man')
+match_object = bat_regex.search('The Adventures of Batman')
+print(match_object.group())
+match_object = bat_regex.search('The Adventures of Batwoman')
+print(match_object.group())
+match_object = bat_regex.search('The Adventures of Batwowowowoman')
+print(match_object.group())
+
+"""
+the + (or plus) means “match one or more.”
+"""
+bat_regex = re.compile(r'Bat(wo)+man')
+match_object = bat_regex.search('The Adventures of Batman')
+print(match_object is None)
+match_object = bat_regex.search('The Adventures of Batwoman')
+print(match_object.group())
+match_object = bat_regex.search('The Adventures of Batwowowowoman')
+print(match_object.group())
+
+ha_regex = re.compile(r'(Ha){3}')
+match_object = ha_regex.search('HaHaHa')
+print(match_object.group())
+match_object = ha_regex.search('Ha')
+print(match_object is None)
