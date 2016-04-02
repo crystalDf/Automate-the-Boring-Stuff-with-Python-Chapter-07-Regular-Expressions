@@ -30,3 +30,42 @@ match_object = whole_string_is_num.search('12345xyz67890')
 print(match_object)
 match_object = whole_string_is_num.search('12  34567890')
 print(match_object)
+
+"""
+Remember that the dot character will match just one character
+"""
+at_regex = re.compile(r'.at')
+match_object = at_regex.findall('The cat in the hat sat on the flat mat.')
+print(match_object)
+
+"""
+You can use the dot-star (.*) to stand in for that “anything.”
+Remember that the dot character means
+“any single character except the newline,”
+and the star character means
+“zero or more of the preceding character.”
+"""
+name_regex = re.compile(r'First Name: (.*) Last Name: (.*)')
+match_object = name_regex.search('First Name: Al Last Name: Sweigart')
+print(match_object.group(1))
+print(match_object.group(2))
+
+nongreedy_regex = re.compile(r'<.*?>')
+match_object = nongreedy_regex.search('<To serve man> for dinner.>')
+print(match_object.group())
+
+greedy_regex = re.compile(r'<.*>')
+match_object = greedy_regex.search('<To serve man> for dinner.>')
+print(match_object.group())
+
+no_newline_regex = re.compile('.*')
+match_object = no_newline_regex.search('Serve the public trust.\n'
+                                       'Protect the innocent. \n'
+                                       'Uphold the law.')
+print(match_object.group())
+
+newline_regex = re.compile('.*', re.DOTALL)
+match_object = newline_regex.search('Serve the public trust.\n'
+                                    'Protect the innocent. \n'
+                                    'Uphold the law.')
+print(match_object.group())
