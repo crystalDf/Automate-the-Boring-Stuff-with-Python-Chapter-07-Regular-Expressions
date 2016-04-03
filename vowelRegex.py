@@ -69,3 +69,12 @@ match_object = newline_regex.search('Serve the public trust.\n'
                                     'Protect the innocent. \n'
                                     'Uphold the law.')
 print(match_object.group())
+
+robocop = re.compile(r'robocop', re.I)
+match_object = robocop.search('RoboCop is part man, part machine, all cop.')
+print(match_object.group())
+match_object = robocop.search('ROBOCOP protects the innocent.')
+print(match_object.group())
+match_object = robocop.search('Al, why does your programming book talk about '
+                              'robocop so much?')
+print(match_object.group())
