@@ -78,3 +78,26 @@ print(match_object.group())
 match_object = robocop.search('Al, why does your programming book talk about '
                               'robocop so much?')
 print(match_object.group())
+
+"""
+The sub() method for Regex objects is passed two arguments.
+The first argument is a string to replace any matches.
+The second is the string for the regular expression.
+The sub() method returns a string with the substitutions applied.
+"""
+names_regex = re.compile(r'Agent \w+')
+match_object = names_regex.sub('CENSORED', 'Agent Alice gave the '
+                                           'secret documents to Agent Bob.')
+print(match_object)
+
+"""
+Sometimes you may need to use the matched text itself as part of
+the substitution.
+In the first argument to sub(), you can type \1, \2, \3, and so on,
+to mean “Enter the text of group 1, 2, 3, and so on, in the substitution.”
+"""
+names_regex = re.compile(r'Agent (\w)\w*')
+match_object = names_regex.sub(r'\1****', 'Agent Alice told Agent Carol that '
+                                          'Agent Eve knew Agent Bob was '
+                                          'a double agent.')
+print(match_object)
