@@ -101,3 +101,29 @@ match_object = names_regex.sub(r'\1****', 'Agent Alice told Agent Carol that '
                                           'Agent Eve knew Agent Bob was '
                                           'a double agent.')
 print(match_object)
+
+"""
+You can mitigate this by telling the re.compile() function to
+ignore whitespace and comments inside the regular expression string.
+This “verbose mode” can be enabled by passing the variable re.VERBOSE
+as the second argument to re.compile().
+"""
+"""
+the previous example uses the triple-quote syntax (''') to create
+a multiline string so that you can spread the regular expression definition
+over many lines, making it much more legible.
+"""
+phone_regex = re.compile(r'''(
+(\d{3}|\(d{3}\))?
+(\s|-|\.)?
+\d{3}
+(\s|-|\.)
+\d{4}
+(\s*(ext|x|ext.)\s*\d{2,5})?
+)''', re.VERBOSE)
+
+"""
+the pipe character (|), which in this context is known as
+the bitwise or operator
+"""
+some_regex_value = re.compile('foo', re.IGNORECASE | re.DOTALL | re.VERBOSE)
