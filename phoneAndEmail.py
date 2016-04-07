@@ -21,13 +21,16 @@ email_regex = re.compile(r'''(
 
 text = str(pyperclip.paste())
 matches = []
+print(phone_regex.findall(text))
 for groups in phone_regex.findall(text):
     print(groups)
     phone_num = '-'.join([groups[1], groups[3], groups[5]])
     if groups[8] != '':
         phone_num += ' x' + groups[8]
     matches.append(phone_num)
+print(email_regex.findall(text))
 for groups in email_regex.findall(text):
+    print(groups)
     matches.append(groups[0])
 
 if len(matches) > 0:
