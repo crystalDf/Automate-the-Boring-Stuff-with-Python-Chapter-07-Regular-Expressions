@@ -110,7 +110,7 @@ as the second argument to re.compile().
 """
 """
 the previous example uses the triple-quote syntax (''') to create
-a multiline string so that you can spread the regular expression definition
+a multi-line string so that you can spread the regular expression definition
 over many lines, making it much more legible.
 """
 phone_regex = re.compile(r'''(
